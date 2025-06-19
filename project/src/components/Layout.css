@@ -1,0 +1,29 @@
+.app-container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  transition: background-color 0.3s ease;
+}
+
+.app-container.dark {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+.main-content {
+  flex: 1;
+  padding-bottom: 80px;
+  min-height: calc(100vh - 140px);
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    padding-bottom: 20px;
+    margin-left: 280px;
+    min-height: calc(100vh - 80px);
+  }
+}
+
+/* Smooth transitions for theme changes */
+.app-container * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

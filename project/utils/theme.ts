@@ -1,0 +1,53 @@
+export const lightColors = {
+  primary: '#22C55E',
+  primaryDark: '#16A34A',
+  secondary: '#10B981',
+  accent: '#F59E0B',
+  background: '#FFFFFF',
+  surface: '#F8FAFC',
+  surfaceElevated: '#FFFFFF',
+  text: '#0F172A',
+  textSecondary: '#64748B',
+  textTertiary: '#94A3B8',
+  border: '#E2E8F0',
+  borderLight: '#F1F5F9',
+  success: '#10B981',
+  warning: '#F59E0B',
+  error: '#EF4444',
+  info: '#3B82F6',
+  shadow: '#000000',
+  overlay: 'rgba(0, 0, 0, 0.5)',
+  cardGradientStart: '#F8FAFC',
+  cardGradientEnd: '#FFFFFF',
+  weatherCard: '#E0F2FE',
+  cropCard: '#F0FDF4',
+};
+
+export const darkColors = {
+  primary: '#22C55E',
+  primaryDark: '#16A34A',
+  secondary: '#10B981',
+  accent: '#F59E0B',
+  background: '#0F172A',
+  surface: '#1E293B',
+  surfaceElevated: '#334155',
+  text: '#F8FAFC',
+  textSecondary: '#CBD5E1',
+  textTertiary: '#94A3B8',
+  border: '#334155',
+  borderLight: '#475569',
+  success: '#10B981',
+  warning: '#F59E0B',
+  error: '#EF4444',
+  info: '#3B82F6',
+  shadow: '#000000',
+  overlay: 'rgba(0, 0, 0, 0.7)',
+  cardGradientStart: '#1E293B',
+  cardGradientEnd: '#334155',
+  weatherCard: '#1E3A8A',
+  cropCard: '#14532D',
+};
+
+export function getThemeColors(isDark: boolean) {
+  return isDark ? darkColors : lightColors;
+}
