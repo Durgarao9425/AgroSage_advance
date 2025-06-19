@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { useAppContext, Language, Theme, UserProfile } from '../contexts/AppContext';
-import { 
-  Globe, 
-  Palette, 
-  Bell, 
-  Shield, 
-  FileText, 
-  Info, 
+import {
+  useAppContext,
+  Language,
+  Theme,
+  UserProfile,
+} from '../contexts/AppContext';
+import {
+  Globe,
+  Palette,
+  Bell,
+  Shield,
+  FileText,
+  Info,
   ChevronRight,
   Check,
   Moon,
@@ -15,27 +20,28 @@ import {
   User,
   Edit3,
   Save,
-  X
+  X,
 } from 'lucide-react';
 import './SettingsScreen.css';
 
 const SettingsScreen: React.FC = () => {
-  const { 
-    translations, 
-    isDark, 
-    language, 
-    setLanguage, 
-    theme, 
+  const {
+    translations,
+    isDark,
+    language,
+    setLanguage,
+    theme,
     setTheme,
     userProfile,
-    setUserProfile
+    setUserProfile,
   } = useAppContext();
-  
+
   const [showLanguagePicker, setShowLanguagePicker] = useState(false);
   const [showThemePicker, setShowThemePicker] = useState(false);
   const [showProfileEditor, setShowProfileEditor] = useState(false);
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
-  const [editingProfile, setEditingProfile] = useState<UserProfile>(userProfile);
+  const [editingProfile, setEditingProfile] =
+    useState<UserProfile>(userProfile);
 
   const languages: { code: Language; name: string; nativeName: string }[] = [
     { code: 'en', name: 'English', nativeName: 'English' },
@@ -52,7 +58,11 @@ const SettingsScreen: React.FC = () => {
   const handleLanguageChange = (newLanguage: Language) => {
     setLanguage(newLanguage);
     setShowLanguagePicker(false);
-    alert(`Language changed to ${languages.find(l => l.code === newLanguage)?.name}`);
+    alert(
+      `Language changed to ${
+        languages.find((l) => l.code === newLanguage)?.name
+      }`
+    );
   };
 
   const handleThemeChange = (newTheme: Theme) => {
@@ -67,11 +77,11 @@ const SettingsScreen: React.FC = () => {
   };
 
   const getCurrentLanguageName = () => {
-    return languages.find(l => l.code === language)?.nativeName || 'English';
+    return languages.find((l) => l.code === language)?.nativeName || 'English';
   };
 
   const getCurrentThemeName = () => {
-    return themes.find(t => t.code === theme)?.name || 'System';
+    return themes.find((t) => t.code === theme)?.name || 'System';
   };
 
   const renderProfileEditor = () => (
@@ -89,7 +99,7 @@ const SettingsScreen: React.FC = () => {
             <X size={24} />
           </button>
         </div>
-        
+
         <div className="modal-content">
           <div className="profile-avatar-section">
             <div className="profile-avatar-large">
@@ -100,14 +110,16 @@ const SettingsScreen: React.FC = () => {
 
           <div className="form-section">
             <h3 className="form-section-title">{translations.personalInfo}</h3>
-            
+
             <div className="form-group">
               <label className="form-label">{translations.name}</label>
               <input
                 type="text"
                 className="form-input"
                 value={editingProfile.name}
-                onChange={(e) => setEditingProfile({...editingProfile, name: e.target.value})}
+                onChange={(e) =>
+                  setEditingProfile({ ...editingProfile, name: e.target.value })
+                }
               />
             </div>
 
@@ -117,7 +129,12 @@ const SettingsScreen: React.FC = () => {
                 type="email"
                 className="form-input"
                 value={editingProfile.email}
-                onChange={(e) => setEditingProfile({...editingProfile, email: e.target.value})}
+                onChange={(e) =>
+                  setEditingProfile({
+                    ...editingProfile,
+                    email: e.target.value,
+                  })
+                }
               />
             </div>
 
@@ -127,21 +144,31 @@ const SettingsScreen: React.FC = () => {
                 type="tel"
                 className="form-input"
                 value={editingProfile.phone}
-                onChange={(e) => setEditingProfile({...editingProfile, phone: e.target.value})}
+                onChange={(e) =>
+                  setEditingProfile({
+                    ...editingProfile,
+                    phone: e.target.value,
+                  })
+                }
               />
             </div>
           </div>
 
           <div className="form-section">
             <h3 className="form-section-title">{translations.farmInfo}</h3>
-            
+
             <div className="form-group">
               <label className="form-label">{translations.farmSize}</label>
               <input
                 type="text"
                 className="form-input"
                 value={editingProfile.farmSize}
-                onChange={(e) => setEditingProfile({...editingProfile, farmSize: e.target.value})}
+                onChange={(e) =>
+                  setEditingProfile({
+                    ...editingProfile,
+                    farmSize: e.target.value,
+                  })
+                }
               />
             </div>
 
@@ -151,7 +178,12 @@ const SettingsScreen: React.FC = () => {
                 type="text"
                 className="form-input"
                 value={editingProfile.experience}
-                onChange={(e) => setEditingProfile({...editingProfile, experience: e.target.value})}
+                onChange={(e) =>
+                  setEditingProfile({
+                    ...editingProfile,
+                    experience: e.target.value,
+                  })
+                }
               />
             </div>
           </div>
@@ -167,10 +199,7 @@ const SettingsScreen: React.FC = () => {
           >
             {translations.cancel}
           </button>
-          <button
-            className="save-btn"
-            onClick={handleProfileSave}
-          >
+          <button className="save-btn" onClick={handleProfileSave}>
             <Save size={16} />
             {translations.saveProfile}
           </button>
@@ -191,12 +220,14 @@ const SettingsScreen: React.FC = () => {
             <X size={24} />
           </button>
         </div>
-        
+
         <div className="picker-list">
           {languages.map((lang) => (
             <button
               key={lang.code}
-              className={`picker-item ${language === lang.code ? 'active' : ''}`}
+              className={`picker-item ${
+                language === lang.code ? 'active' : ''
+              }`}
               onClick={() => handleLanguageChange(lang.code)}
             >
               <div className="language-info">
@@ -223,12 +254,14 @@ const SettingsScreen: React.FC = () => {
             <X size={24} />
           </button>
         </div>
-        
+
         <div className="picker-list">
           {themes.map((themeOption) => (
             <button
               key={themeOption.code}
-              className={`picker-item ${theme === themeOption.code ? 'active' : ''}`}
+              className={`picker-item ${
+                theme === themeOption.code ? 'active' : ''
+              }`}
               onClick={() => handleThemeChange(themeOption.code)}
             >
               <div className="theme-info">
@@ -261,31 +294,10 @@ const SettingsScreen: React.FC = () => {
         {/* Header */}
         <div className="settings-header">
           <h1 className="settings-title">{translations.settings}</h1>
-          <p className="settings-subtitle">Customize your AgroSage experience</p>
+          <p className="settings-subtitle">
+            Customize your AgroSage experience
+          </p>
         </div>
-
-        {/* Profile Section */}
-        <div className="profile-section">
-          <div className="profile-card">
-            <div className="profile-avatar">
-              <User size={24} />
-            </div>
-            <div className="profile-info">
-              <h3 className="profile-name">{userProfile.name}</h3>
-              <p className="profile-email">{userProfile.email}</p>
-              <p className="profile-details">
-                {userProfile.farmSize} • {userProfile.experience} experience
-              </p>
-            </div>
-            <button
-              className="edit-profile-btn"
-              onClick={() => setShowProfileEditor(true)}
-            >
-              <Edit3 size={16} />
-            </button>
-          </div>
-        </div>
-
         {/* Settings Sections */}
         <div className="settings-sections">
           {/* Account Settings */}
@@ -301,7 +313,9 @@ const SettingsScreen: React.FC = () => {
                 </div>
                 <div className="setting-content">
                   <span className="setting-title">{translations.profile}</span>
-                  <span className="setting-subtitle">Manage your personal information</span>
+                  <span className="setting-subtitle">
+                    Manage your personal information
+                  </span>
                 </div>
                 <ChevronRight size={20} />
               </button>
@@ -321,7 +335,9 @@ const SettingsScreen: React.FC = () => {
                 </div>
                 <div className="setting-content">
                   <span className="setting-title">{translations.language}</span>
-                  <span className="setting-subtitle">{getCurrentLanguageName()}</span>
+                  <span className="setting-subtitle">
+                    {getCurrentLanguageName()}
+                  </span>
                 </div>
                 <ChevronRight size={20} />
               </button>
@@ -334,8 +350,12 @@ const SettingsScreen: React.FC = () => {
                   <Palette size={20} />
                 </div>
                 <div className="setting-content">
-                  <span className="setting-title">{translations.themeMode}</span>
-                  <span className="setting-subtitle">{getCurrentThemeName()}</span>
+                  <span className="setting-title">
+                    {translations.themeMode}
+                  </span>
+                  <span className="setting-subtitle">
+                    {getCurrentThemeName()}
+                  </span>
                 </div>
                 <ChevronRight size={20} />
               </button>
@@ -345,7 +365,9 @@ const SettingsScreen: React.FC = () => {
                   <Bell size={20} />
                 </div>
                 <div className="setting-content">
-                  <span className="setting-title">{translations.notifications}</span>
+                  <span className="setting-title">
+                    {translations.notifications}
+                  </span>
                   <span className="setting-subtitle">Push notifications</span>
                 </div>
                 <label className="toggle-switch">
@@ -366,41 +388,61 @@ const SettingsScreen: React.FC = () => {
             <div className="settings-group">
               <button
                 className="setting-item"
-                onClick={() => alert('About AgroSage\n\nAgroSage is a smart crop recommendation system that helps farmers make informed decisions based on location, weather, and soil conditions.\n\nVersion 1.0.0\nDeveloped with ❤️ for farmers')}
+                onClick={() =>
+                  alert(
+                    'About AgroSage\n\nAgroSage is a smart crop recommendation system that helps farmers make informed decisions based on location, weather, and soil conditions.\n\nVersion 1.0.0\nDeveloped with ❤️ for farmers'
+                  )
+                }
               >
                 <div className="setting-icon">
                   <Info size={20} />
                 </div>
                 <div className="setting-content">
                   <span className="setting-title">{translations.aboutUs}</span>
-                  <span className="setting-subtitle">Learn more about AgroSage</span>
+                  <span className="setting-subtitle">
+                    Learn more about AgroSage
+                  </span>
                 </div>
                 <ChevronRight size={20} />
               </button>
 
               <button
                 className="setting-item"
-                onClick={() => alert('Privacy Policy\n\nYour privacy is important to us. We collect minimal data required for providing crop recommendations and never share your personal information without consent.')}
+                onClick={() =>
+                  alert(
+                    'Privacy Policy\n\nYour privacy is important to us. We collect minimal data required for providing crop recommendations and never share your personal information without consent.'
+                  )
+                }
               >
                 <div className="setting-icon">
                   <Shield size={20} />
                 </div>
                 <div className="setting-content">
-                  <span className="setting-title">{translations.privacyPolicy}</span>
-                  <span className="setting-subtitle">How we protect your data</span>
+                  <span className="setting-title">
+                    {translations.privacyPolicy}
+                  </span>
+                  <span className="setting-subtitle">
+                    How we protect your data
+                  </span>
                 </div>
                 <ChevronRight size={20} />
               </button>
 
               <button
                 className="setting-item"
-                onClick={() => alert('Terms of Service\n\nBy using AgroSage, you agree to our terms of service. The recommendations provided are for guidance only and actual results may vary based on various factors.')}
+                onClick={() =>
+                  alert(
+                    'Terms of Service\n\nBy using AgroSage, you agree to our terms of service. The recommendations provided are for guidance only and actual results may vary based on various factors.'
+                  )
+                }
               >
                 <div className="setting-icon">
                   <FileText size={20} />
                 </div>
                 <div className="setting-content">
-                  <span className="setting-title">{translations.termsOfService}</span>
+                  <span className="setting-title">
+                    {translations.termsOfService}
+                  </span>
                   <span className="setting-subtitle">Terms and conditions</span>
                 </div>
                 <ChevronRight size={20} />
@@ -408,12 +450,38 @@ const SettingsScreen: React.FC = () => {
             </div>
           </div>
         </div>
+        {/* Logout Button */}
+        <div style={{ marginTop: 32 }}>
+          <button
+            className="logout-btn"
+            onClick={() => alert('Logged out!')}
+            style={{
+              width: '100%',
+              background: '#ef4444',
+              color: '#fff',
+              padding: '16px 0',
+              border: 'none',
+              borderRadius: '10px',
+              fontSize: '18px',
+              fontWeight: 700,
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+              letterSpacing: '0.5px',
+              transition: 'background 0.2s',
+              margin: '0 auto',
+              display: 'block',
+            }}
+          >
+            {translations.logout}
+          </button>
+        </div>
 
         {/* App Version */}
         <div className="app-version">
           <p className="version-text">AgroSage v1.0.0</p>
           <p className="version-subtext">Made with ❤️ for farmers</p>
         </div>
+        {/* Logout Button */}
       </div>
     </div>
   );

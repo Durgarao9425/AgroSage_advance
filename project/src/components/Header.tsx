@@ -3,10 +3,13 @@ import { useAppContext } from '../contexts/AppContext';
 import { Bell } from 'lucide-react';
 import './Header.css';
 import durgarao from '../../assets/images/durgarao.png';
+import ProfileEditorModal from './ProfileEditorModal';
 
 const Header: React.FC = () => {
-  const { translations, userProfile, isDark, setActiveTab } = useAppContext();
+  const { translations, userProfile, isDark, activeTab, setActiveTab } =
+    useAppContext();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,12 +31,23 @@ const Header: React.FC = () => {
   const handleMenuClick = (action: string) => {
     setMenuOpen(false);
     if (action === 'settings') setActiveTab('settings');
-    // Add logic for 'profile' and 'logout' as needed
+    if (action === 'profile') setShowProfileModal(true);
+    // Add logic for 'logout' as needed
   };
 
   const getPageTitle = () => {
-    // If you want to show a title, you can use a default or remove this function if not needed
-    return translations.home;
+    switch (activeTab) {
+      case 'home':
+        return translations.home;
+      case 'location':
+        return translations.location;
+      case 'crops':
+        return translations.crops;
+      case 'settings':
+        return translations.settings;
+      default:
+        return translations.home;
+    }
   };
 
   return (
@@ -83,6 +97,10 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
+      <ProfileEditorModal
+        open={showProfileModal}
+        onClose={() => setShowProfileModal(false)}
+      />
     </header>
   );
 };

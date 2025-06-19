@@ -1,0 +1,110 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.modal-container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  max-width: 400px;
+  width: 100%;
+  padding: 24px;
+  position: relative;
+}
+.modal-container.dark {
+  background: #1e293b;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.modal-title {
+  font-size: 22px;
+  font-weight: 600;
+}
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.profile-avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.profile-avatar-large {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.change-avatar-btn {
+  background: #f1f5f9;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.form-section {
+  margin-bottom: 16px;
+}
+.form-section-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.form-group {
+  margin-bottom: 10px;
+}
+.form-label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 15px;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+.cancel-btn, .save-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+.cancel-btn {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+.save-btn {
+  background: #22c55e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
